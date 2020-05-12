@@ -20,6 +20,6 @@ Sometimes when the list is empty, its type maybe cause the error when test it.So
 ## operation result ##
 ![Alt text](/fig/1.png)
 
-![Alt text](/fig/2.png)
+![Alt text](/fig/2.jpg)
 ## conclusion ##
 A mutable object means interaction with an object can modify it, an immutable object means interaction with an object cannot change it.Mutable version and immutable version both can achieved the features are asked for. But the runtime of them has difference.
