@@ -9,7 +9,7 @@
 In this lab,we should use development tools and to design algorithms in mutable and immutable styles,analyze different approaches algorithms and data structures design.Besides,develop unit and property-based tests.The selected data structure should be implemented in two way: as a mutable object (interaction with an object can modify it); as an immutable object (interaction with an object cannot change it).For each version of a library (mutable and immutable),we should implement ten feature.
 
 ## contribution summary for each group member ##
-![Alt text](/fig/YaoWangze.png)
+![Alt text](/fig/3.png)
 ## explanation of taken design decisions and analysis ##
 1. Test mutable version :
 Here, a list is used to represent a dynamic array, and the list index method is used for addition and deletion.  Size, search, etc. use the methods that come with the list. Mapping is to convert the list to the corresponding type. Iteration is to use the self-incrementing variable method to return the corresponding value of the current object.
