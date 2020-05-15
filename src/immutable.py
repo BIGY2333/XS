@@ -1,3 +1,4 @@
+from ctypes import py_object
 def size(n):
     if n is None:
         return 0
@@ -102,3 +103,15 @@ def iterator(lst):
         return value
 
     return foo
+
+#growth factor
+# I rebulid a arrry which is 2 times of lst, then set the value of lst to the new array(New), finally, let lst equal New
+def make_array(a):
+    return (a * py_object)()
+def resize_lenth(lst, cnt):
+    New = make_array(cnt)
+    for i in range(len(lst)):
+        New[i] = lst[i]
+    for i in range(len(New)):
+        lst[i] = New[i]
+    return lst
