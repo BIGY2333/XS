@@ -16,11 +16,11 @@ class TestMutableList(unittest.TestCase):
         list.add_to_tail('a')
         list.add_to_tail('b')
         list.add_to_tail('c')
-        list.removeElement('a')
+        list.remove_element('a')
         self.assertEqual(list.to_list(),['b','c'] )
-        list.removeElement('b')
+        list.remove_element('b')
         self.assertEqual(list.to_list(),['c'])
-        list.removeElement('c')
+        list.remove_element('c')
         self.assertEqual(list.to_list(), [])
 
     def test_to_list(self):
@@ -90,6 +90,14 @@ class TestMutableList(unittest.TestCase):
         list.add_to_tail('c')
         list.add_to_tail('b')
         self.assertEqual(list.findAll('b'),[1,3] )
+
+
+    @given(st.lists(st.integers()))
+    def test_from_list_to_list_equality(self, a):
+        lst = List()
+        lst.from_list(a)
+        b = lst.to_list()
+        self.assertEqual(a, b)
 
 
     @given(st.lists(st.integers()))

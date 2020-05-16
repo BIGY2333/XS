@@ -1,12 +1,29 @@
 class List(object):
 
+    '''
+       Explain how to implement growing factor :
+
+       We set the initial capacity and initial size when initializing the class.
+
+       When the content added by the dynamic linked list reaches the set capacity,
+
+       it will be expanded twice and the size will be re-assigned.
+
+       Just like in line 71, if the element is full after adding, call the _resize function to expand the capacity,
+
+       where 2 is the set growth factor.
+
+       '''
+
     def __init__(self,capacity=10):
         self._capacity = capacity
         self._size = 0  # 数组有效元素的数目，初始化为0
         self._data = [None] * self._capacity
         self.start = 0
+
     def size(self):
         return self._size
+
     def _resize(self,new_capacity):
         new_arr = List(new_capacity)
         for i in range(self._size):
@@ -14,7 +31,7 @@ class List(object):
         self._capacity = new_capacity
         self._data = new_arr._data
 
-    def getCapacity(self):
+    def get_capacity(self):
         return self._capacity
 
     def find(self, elem):
@@ -27,9 +44,12 @@ class List(object):
 
         if index < 0 or index >= self._size:
             raise Exception('Remove failed.Require 0 <= index < self._size')
+
         ret = self._data[index]
+
         for i in range(index + 1, self._size):
             self._data[i - 1] = self._data[i]
+
         self._size -= 1
         self._data[self._size] = None
 
@@ -37,23 +57,26 @@ class List(object):
             self._resize(self._capacity // 2)
         return ret
 
-    def removeElement(self, elem):
+    def remove_element(self, elem):
 
         index = self.find(elem)
         if index != -1:
             self.remove(index)
 
 
-    def isEmpty(self):
+    def is_empty(self):
         return  self._size == 0
 
     def add(self, index, elem):
         if index < 0 or index > self._size:
             raise Exception('Add Filed.')
+
         if self._size == self._capacity:
             self._resize(self._capacity * 2)
+
         for i in range(self._size - 1, index - 1, -1):
             self._data[i + 1] = self._data[i]
+
         self._data[index] = elem
         self._size += 1
 
@@ -84,6 +107,7 @@ class List(object):
     def str(self):
         for i in range(self.size()):
             print(self._data[i])
+
     def map(self,f):
         for i in range(self.size()):
             cur = self._data[i]
