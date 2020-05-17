@@ -4,9 +4,6 @@ def size(n):
         return 0
     else:
         return len(n)
-# def cons(head):
-#     """add new element to head of the list"""
-#     return Node(head)
 
 def remove(lst, index):
     if index < 0 or index > len(lst):
@@ -14,7 +11,7 @@ def remove(lst, index):
     lst = list(lst)
     for i in range(index + 1, len(lst)):
         lst[i - 1] = lst[i]
-    del lst[len(lst)-1]  #delete the last element
+    del lst[len(lst)-1]
     return lst
 
 def add(lst, index, n):
@@ -85,6 +82,8 @@ def mempty():
 def mconcat(a, b):
     if a is None:
         return b
+    if b is None:
+        return a
     tmp = reverse(a)
     res = b
     for i in range(len(tmp)):
@@ -112,6 +111,4 @@ def resize_lenth(lst, cnt):
     New = make_array(cnt)
     for i in range(len(lst)):
         New[i] = lst[i]
-    for i in range(len(New)):
-        lst[i] = New[i]
-    return lst
+    return len(New)

@@ -64,4 +64,12 @@ class TestImmutableList(unittest.TestCase):
         except StopIteration:
             pass
         self.assertEqual(arr, tmp)
-
+    def test_monoid(self):
+        self.assertEqual(mconcat(mempty(), ['c']), ['c'])
+        self.assertEqual(mconcat(mempty(), ['c']), mconcat(['c'], mempty()))
+        self.assertEqual(mconcat(['a', 'b'], ['c']), mconcat(['a'], ['b', 'c']))
+    def test_resize_lenth(self):
+        arr = [1, 2, 3]
+        self.assertEqual(resize_lenth(arr, 6), 6)
+        arr = [1]
+        self.assertEqual(resize_lenth(arr, 2), 2)
