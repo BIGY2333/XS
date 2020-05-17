@@ -1,7 +1,7 @@
 import unittest
 from hypothesis import given
 import hypothesis.strategies as st
-from p1 import *
+from mutable import *
 class TestMutableList(unittest.TestCase):
     def test_size(self):
         self.assertEqual(List().size(), 0)
@@ -91,6 +91,19 @@ class TestMutableList(unittest.TestCase):
         list.add_to_tail('b')
         self.assertEqual(list.findAll('b'),[1,3] )
 
+    def test_growing(self):
+        list = List()
+        list.add_to_tail('a')
+        list.add_to_tail('b')
+        list.add_to_tail('c')
+        list.add_to_tail('d')
+        list.add_to_tail('e')
+        self.assertEqual(list._capacity, 5)
+        list.add_to_tail('f')
+        self.assertEqual(list._capacity, 10)
+
+
+
 
     @given(st.lists(st.integers()))
     def test_from_list_to_list_equality(self, a):
@@ -105,19 +118,7 @@ class TestMutableList(unittest.TestCase):
         lst = List()
         lst.from_list(a)
         self.assertEqual(lst.size(), len(a))
-    #
-    # def test_mconcat(self):
-    #     lst = List(['a', 'b'])
-    #     self.assertEqual(lst.mconcat('c'), ['a', 'b', 'c'])
-    #     lst = List(['a', 'b'])
-    #     self.assertEqual(lst.mconcat(['c', 'd']), ['a', 'b', 'c', 'd'])
-    # @given(st.lists(st.integers()))
-    #
-    # def test_monoid_identity(self, lst):
-    #     lst = List()
-    #     a = lst.from_list(lst)
-    #     self.assertEqual(a.mconcat([]), )
-    #     self.assertEqual(mconcat(a, []), a)
+
 
     def test_iter(self):
         x = [1, 2, 3]

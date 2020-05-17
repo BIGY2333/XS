@@ -15,9 +15,9 @@ class List(object):
 
        '''
 
-    def __init__(self,capacity=10):
+    def __init__(self,capacity=5):
         self._capacity = capacity
-        self._size = 0  # 数组有效元素的数目，初始化为0
+        self._size = 0
         self._data = [None] * self._capacity
         self.start = 0
 
@@ -35,9 +35,9 @@ class List(object):
         return self._capacity
 
     def find(self, elem):
-        for i in range(self._size):  # 遍历数组
+        for i in range(self._size):
             if self._data[i] == elem:
-                return i  # 找到就返回索引
+                return i
         return -1
 
     def remove(self, index):
@@ -122,25 +122,13 @@ class List(object):
 
     def findAll(self, elem):
         a = []
-        for i in range(self._size):  # 遍历数组
+        for i in range(self._size):
             if self._data[i] == elem:
                 a.append(i)
 
         return a
 
 
-
-    # def mempty(self):
-    #     return None
-    #
-    # def mconcat(self, b):
-    #     if self.isEmpty()==True:
-    #         return b
-    #     tmp = self.reverse()
-    #     res = b
-    #     for i in range(len(tmp)):
-    #         res = self.add( 0, tmp[i])
-    #     return res
 
 
     def __iter__(self):
