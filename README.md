@@ -13,6 +13,7 @@ In this lab,we should use development tools and to design algorithms in mutable 
 ![Alt text](/fig/4.jpg)
 
 Yaowangze's contribution：Completed the implementation of the mutable and mutable_test code
+
 Sunwei's contribution：Completed the implementation of the immutable and immutable_test code
 
 ## explanation of taken design decisions and analysis ##
