@@ -11,6 +11,10 @@ In this lab,we should use development tools and to design algorithms in mutable 
 ## contribution summary for each group member ##
 ![Alt text](/fig/3.png)
 ![Alt text](/fig/4.jpg)
+
+Yaowangze's contribution：Completed the implementation of the mutable and mutable_test code
+Sunwei's contribution：Completed the implementation of the immutable and immutable_test code
+
 ## explanation of taken design decisions and analysis ##
 1. Test mutable version :
 Here, a list is used to represent a dynamic array, and the list index method is used for addition and deletion.  Size, search, etc. use the methods that come with the list. Mapping is to convert the list to the corresponding type. Iteration is to use the self-incrementing variable method to return the corresponding value of the current object.

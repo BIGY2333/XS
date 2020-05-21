@@ -22,11 +22,19 @@ class TestImmutableList(unittest.TestCase):
             ['a', 'b']
         ]
         for e in test_data:
-            self.assertEqual((from_list(e)), e)
+            self.assertEqual(to_list(from_list(e)), e)
     def test_to_list(self):
         self.assertEqual(to_list(None), [])
         self.assertEqual(to_list(['a', None]), ['a'])
         self.assertEqual(to_list(['a', 'b', None]), ['a', 'b'])
+    @given(st.lists(st.integers()))
+    def test_from_list_to_list_equality(self, a):
+        self.assertEqual(to_list(from_list(a)), a)
+    @given(st.lists(st.integers()))
+    def test_monoid_identity(self, lst):
+        a = from_list(lst)
+        self.assertEqual(mconcat([], a), a)
+        self.assertEqual(mconcat(a, []), a)
     def test_find(self):
         self.assertEqual(find(None, 'a'), False)
         self.assertEqual(find(['a', 'b', 'c'], 'a'), 0)
@@ -46,14 +54,6 @@ class TestImmutableList(unittest.TestCase):
     def test_mconcat(self):
         self.assertEqual(mconcat(['a', 'b'], 'c'), ['a', 'b', 'c'])
         self.assertEqual(mconcat(['a', 'b'], ['c', 'd']), ['a', 'b', 'c', 'd'])
-    @given(st.lists(st.integers()))
-    def test_from_list_to_list_equality(self, a):
-        self.assertEqual(to_list(from_list(a)), a)
-    @given(st.lists(st.integers()))
-    def test_monoid_identity(self, lst):
-        a = from_list(lst)
-        self.assertEqual(mconcat([], a), a)
-        self.assertEqual(mconcat(a, []), a)
     def test_iter(self):
         arr = [1, 2, 3]
         tmp = []
@@ -73,3 +73,6 @@ class TestImmutableList(unittest.TestCase):
         self.assertEqual(resize_lenth(arr, 6), 6)
         arr = [1]
         self.assertEqual(resize_lenth(arr, 2), 2)
+
+if __name__ == '__main__':
+    unittest.main()
