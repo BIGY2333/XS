@@ -33,8 +33,16 @@ class TestImmutableList(unittest.TestCase):
     @given(st.lists(st.integers()))
     def test_monoid_identity(self, lst):
         a = from_list(lst)
-        self.assertEqual(mconcat([], a), a)
-        self.assertEqual(mconcat(a, []), a)
+        self.assertEqual(mconcat(mempty(), a), a)
+        self.assertEqual(mconcat(a, mempty()), a)
+    @given(st.lists(st.integers()))
+    def test_monoid_associativity(self, lst):
+        a = from_list(lst)
+        b = from_list(lst)
+        c = from_list(lst)
+        self.assertEqual(mconcat(mempty(), a), a)
+        self.assertEqual(mconcat(mempty(), a), mconcat(a, mempty()))
+        self.assertEqual(mconcat(mconcat(a, b), c), mconcat(a, mconcat(b, c)))
     def test_find(self):
         self.assertEqual(find(None, 'a'), False)
         self.assertEqual(find(['a', 'b', 'c'], 'a'), 0)
@@ -64,10 +72,6 @@ class TestImmutableList(unittest.TestCase):
         except StopIteration:
             pass
         self.assertEqual(arr, tmp)
-    def test_monoid(self):
-        self.assertEqual(mconcat(mempty(), ['c']), ['c'])
-        self.assertEqual(mconcat(mempty(), ['c']), mconcat(['c'], mempty()))
-        self.assertEqual(mconcat(['a', 'b'], ['c']), mconcat(['a'], ['b', 'c']))
     def test_resize_lenth(self):
         arr = [1, 2, 3]
         self.assertEqual(resize_lenth(arr, 6), 6)
