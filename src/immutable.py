@@ -14,6 +14,16 @@ def remove(arr, index):
     del arr[len(arr)-1]
     return arr
 
+#growth factor
+# I rebulid a array which is 2 times of lst, then set the value of lst to the new array(New), finally, let lst equal New
+def make_array(a):
+    return (a * py_object)()
+def resize_lenth(arr, length):
+    New = make_array(length)
+    for i in range(len(arr)):
+        New[i] = arr[i]
+    return len(New)
+
 def add(arr, index, n):
     # here, if the array is full, it enlarges growth factor times automatically.It realize the purpose of dynamic array
     if size(arr) == len(arr):
@@ -104,13 +114,3 @@ def iterator(arr):
         return value
 
     return foo
-
-#growth factor
-# I rebulid a arrry which is 2 times of lst, then set the value of lst to the new array(New), finally, let lst equal New
-def make_array(a):
-    return (a * py_object)()
-def resize_lenth(arr, length):
-    New = make_array(length)
-    for i in range(len(arr)):
-        New[i] = arr[i]
-    return len(New)
