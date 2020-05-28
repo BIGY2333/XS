@@ -5,76 +5,79 @@ def size(n):
     else:
         return len(n)
 
-def remove(lst, index):
-    if index < 0 or index > len(lst):
+def remove(arr, index):
+    if index < 0 or index > len(arr):
         return False
-    lst = list(lst)
-    for i in range(index + 1, len(lst)):
-        lst[i - 1] = lst[i]
-    del lst[len(lst)-1]
-    return lst
+    arr = list(arr)
+    for i in range(index + 1, len(arr)):
+        arr[i - 1] = arr[i]
+    del arr[len(arr)-1]
+    return arr
 
-def add(lst, index, n):
-    if index < 0 or index > len(lst):
+def add(arr, index, n):
+    # here, if the array is full, it enlarges growth factor times automatically.It realize the purpose of dynamic array
+    if size(arr) == len(arr):
+        resize_lenth(arr, len(arr))
+    if index < 0 or index > len(arr):
         return False
-    lst = list(lst)
-    if lst is None:
+    arr = list(arr)
+    if arr is None:
         return n
     else:
-        lst.insert(index, n)
-    return lst
+        arr.insert(index, n)
+    return arr
 
-def from_list(lst):
+def from_list(arr):
     res = []
     # for e in reversed(lst):
-    for e in (lst):
+    for e in arr:
         # res = add(e, 0, res)
         res.append(e)
     return res
 
 def to_list(n):
-    if n == None:
+    if n is None:
         return []
     res = []
     cur = n
     for i in range(len(n)):
-        if cur[i] != None:
+        if cur[i] is not None:
             res.append(cur[i])
     return res
 
-def find(lst, n):
-    if lst == None:
+def find(arr, n):
+    if arr is None:
         return False
-    lst = list(lst)
-    for i in range(len(lst)):
-        if lst[i] == n:
+    arr = list(arr)
+    for i in range(len(arr)):
+        if arr[i] == n:
             return i
     return False
 
-def filter(lst, filt):
+def filter(arr, filt):
     res = []
-    for i in range(len(lst)):
-        if type(lst[i]) != filt:
-            res.append(lst[i])
+    for i in range(len(arr)):
+        if type(arr[i]) != filt:
+            res.append(arr[i])
     return res
 
-def map(lst, f):
+def map(arr, f):
     i = 0
-    tmp_arr = lst.copy()
-    for v in lst:
+    tmp_arr = arr.copy()
+    for v in arr:
         tmp_arr[i] = f(v)
         i += 1
     return tmp_arr
 
-def reduce(lst, f, initial_state):
+def reduce(arr, f, initial_state):
     state = initial_state
-    for v in lst:
+    for v in arr:
         state = f(state, v)
     return state
 
-def reverse(lst):
-    lst = lst[::-1]
-    return lst
+def reverse(arr):
+    arr = arr[::-1]
+    return arr
 
 def mempty():
     return None
@@ -90,14 +93,13 @@ def mconcat(a, b):
             res = add(res, 0, tmp[i])
     return res
 
-def iterator(lst):
+def iterator(arr):
     idx = 0
-
     def foo():
-        nonlocal idx, lst
-        len_arr = len(lst)
+        nonlocal idx, arr
+        len_arr = len(arr)
         if idx >= len_arr: raise StopIteration
-        value = lst[idx]
+        value = arr[idx]
         idx += 1
         return value
 
@@ -107,8 +109,8 @@ def iterator(lst):
 # I rebulid a arrry which is 2 times of lst, then set the value of lst to the new array(New), finally, let lst equal New
 def make_array(a):
     return (a * py_object)()
-def resize_lenth(lst, cnt):
-    New = make_array(cnt)
-    for i in range(len(lst)):
-        New[i] = lst[i]
+def resize_lenth(arr, length):
+    New = make_array(length)
+    for i in range(len(arr)):
+        New[i] = arr[i]
     return len(New)
