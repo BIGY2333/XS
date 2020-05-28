@@ -119,7 +119,7 @@ class TestMutableList(unittest.TestCase):
         lst.from_list(a)
         self.assertEqual(lst.size(), len(a))
 
-    def property_based_tests(self):
+    def test_Associativity(self):
         lst1 = List()
         lst1.from_list(['a','b'])
         lst1.from_list(['c'])
@@ -127,6 +127,7 @@ class TestMutableList(unittest.TestCase):
         lst2.from_list(['a'])
         lst2.from_list(['b','c'])
         self.assertRaises(lst1.to_list,lst2.to_list)
+    def test__identity(self):
         lst1 = List()
         lst1.from_list(['a'])
         lst2 = List()
