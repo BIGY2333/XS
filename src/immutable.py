@@ -1,9 +1,10 @@
 from ctypes import py_object
 def size(n):
-    if n is None:
-        return 0
-    else:
-        return len(n)
+    s = 0
+    for e in n:
+        if e is not None:
+            s += 1
+    return s
 
 def remove(arr, index):
     if index < 0 or index > len(arr):
@@ -15,7 +16,6 @@ def remove(arr, index):
     return arr
 
 #growth factor
-# I rebulid a array which is 2 times of lst, then set the value of lst to the new array(New), finally, let lst equal New
 def make_array(a):
     return (a * py_object)()
 def resize_lenth(arr, length):
@@ -24,24 +24,17 @@ def resize_lenth(arr, length):
         New[i] = arr[i]
     return len(New)
 
-def add(arr, index, n):
-    # here, if the array is full, it enlarges growth factor times automatically.It realize the purpose of dynamic array
+def insert(arr, index, n):
     if size(arr) == len(arr):
         resize_lenth(arr, len(arr))
-    if index < 0 or index > len(arr):
-        return False
-    arr = list(arr)
-    if arr is None:
-        return n
-    else:
-        arr.insert(index, n)
-    return arr
+    if index < 0:
+        index = len(arr) + index + 1
+    tmp_arr = arr[:index] + [n] + arr[index:]
+    return tmp_arr
 
 def from_list(arr):
     res = []
-    # for e in reversed(lst):
     for e in arr:
-        # res = add(e, 0, res)
         res.append(e)
     return res
 
@@ -56,20 +49,25 @@ def to_list(n):
     return res
 
 def find(arr, n):
-    if arr is None:
-        return False
-    arr = list(arr)
-    for i in range(len(arr)):
-        if arr[i] == n:
-            return i
-    return False
+    index = 0
+    idx_list = []
+    for v in arr:
+        if v == n:
+            idx_list.append(index)
+        index += 1
+    if len(idx_list) == 0:
+        return None
+    elif len(idx_list) == 1:
+        return idx_list[0]
+    else:
+        return idx_list
 
 def filter(arr, filt):
-    res = []
-    for i in range(len(arr)):
-        if type(arr[i]) != filt:
-            res.append(arr[i])
-    return res
+    tmp_arr = []
+    for v in arr:
+        if v != filt:
+            tmp_arr.append(v)
+    return tmp_arr
 
 def map(arr, f):
     i = 0
@@ -90,19 +88,11 @@ def reverse(arr):
     return arr
 
 def mempty():
-    return None
+    return list([])
 
 def mconcat(a, b):
-    if a is None:
-        return b
-    if b is None:
-        return a
-    tmp = reverse(a)
-    res = b
-    for i in range(len(tmp)):
-            res = add(res, 0, tmp[i])
-    return res
-
+    tmp_arr = a + b
+    return tmp_arr
 def iterator(arr):
     idx = 0
     def foo():
@@ -112,5 +102,4 @@ def iterator(arr):
         value = arr[idx]
         idx += 1
         return value
-
     return foo
