@@ -2,17 +2,11 @@ class List(object):
 
     '''
        Explain how to implement growing factor :
-
        We set the initial capacity and initial size when initializing the class.
-
        When the content added by the dynamic linked list reaches the set capacity,
-
        it will be expanded twice and the size will be re-assigned.
-
        Just like in line 71, if the element is full after adding, call the _resize function to expand the capacity,
-
        where 2 is the set growth factor.
-
        '''
 
     def __init__(self,capacity=5):
@@ -133,7 +127,7 @@ class List(object):
         return a
 
     def mconcat(self,a, b):
-        for i in range(b):
+        for i in range(len(b)):
             a.append(b[i])
         self.from_list(a)
         return  self.to_list()
@@ -151,9 +145,6 @@ class List(object):
         self.start = self.start + 1
         tmp = self._data[self.start]
         return tmp
-
-
-
 
 
 
