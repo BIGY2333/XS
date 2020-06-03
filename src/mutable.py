@@ -128,6 +128,17 @@ class List(object):
 
         return a
 
+    def mempty(self):
+        a = []
+        return a
+
+    def mconcat(self,a, b):
+        for i in range(b):
+            a.append(b[i])
+        self.from_list(a)
+        return  self.to_list()
+
+
 
 
 

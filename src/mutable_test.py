@@ -119,7 +119,21 @@ class TestMutableList(unittest.TestCase):
         lst.from_list(a)
         self.assertEqual(lst.size(), len(a))
 
-    def test_Associativity(self):
+    @given(st.lists(st.integers()))
+    def test_monoid_identity(self, lst):
+        l = List()
+        self.assertEqual(l.mconcat(l.mempty(), lst), lst)
+        self.assertEqual(l.mconcat(lst, l.mempty()), lst)
+
+    @given(st.lists(st.integers()), st.lists(st.integers()), st.lists(st.integers()))
+    def test_monoid_associativity(self, lst1, lst2, lst3):
+        l1 = List()
+        self.assertEqual(l1.mconcat(l1.mempty(), lst1), lst1)
+        l2 = List()
+        self.assertEqual(l2.mconcat(l2.mempty(), lst1), l2.mconcat(lst1, l2.mempty()))
+        l3 = List()
+        self.assertEqual(l3.mconcat(l3.mconcat(lst1, lst2), lst3), l3.mconcat(lst1, l3.mconcat(lst2, lst3)))
+    def test_associativity(self):
         lst1 = List()
         lst1.from_list(['a','b'])
         lst1.from_list(['c'])
