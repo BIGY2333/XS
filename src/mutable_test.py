@@ -133,24 +133,7 @@ class TestMutableList(unittest.TestCase):
         self.assertEqual(l2.mconcat(l2.mempty(), lst1), l2.mconcat(lst1, l2.mempty()))
         l3 = List()
         self.assertEqual(l3.mconcat(l3.mconcat(lst1, lst2), lst3), l3.mconcat(lst1, l3.mconcat(lst2, lst3)))
-    def test_associativity(self):
-        lst1 = List()
-        lst1.from_list(['a','b'])
-        lst1.from_list(['c'])
-        lst2 = List()
-        lst2.from_list(['a'])
-        lst2.from_list(['b','c'])
-        self.assertRaises(lst1.to_list,lst2.to_list)
-    def test__identity(self):
-        lst1 = List()
-        lst1.from_list(['a'])
-        lst2 = List()
-        lst2.from_list([])
-        lst2.from_list(['a'])
-        lst3 = List()
-        lst3.from_list(['a'])
-        lst3.from_list([])
-        self.assertRaises(lst1.to_list, lst2.to_list,lst3.to_list)
+
 
 
 
